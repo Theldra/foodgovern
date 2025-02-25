@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEnvelope, FaFacebook, FaInstagram, FaMapMarkerAlt, FaPhone, FaTwitter } from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaInstagram, FaMapMarkerAlt, FaPhoneAlt, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import allfoodlogo from "../assets/images/alliancelogo.png"
 
@@ -40,7 +40,7 @@ const Footer = () => {
                 <span>Foodandgoodgov.1@gmail.com</span>
               </li>
               <li className="flex items-center gap-2">
-                <FaPhone size={16} />
+                <FaPhoneAlt size={16} />
                 <span>+233 244047325</span>
               </li>
               <li className="flex items-center gap-2">

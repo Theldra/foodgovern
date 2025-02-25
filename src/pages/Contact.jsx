@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram, FaPhoneAlt } from 'react-icons/fa';
 import toast from 'react-hot-toast'; // Add this import
 
 const Contact = () => {
@@ -46,19 +46,22 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <FaPhone className="text-2xl text-green-600" />,
+      icon: <FaPhoneAlt className="text-2xl text-green-600" />,
       title: 'Phone',
-      details: '+233 244047325'
+      details: '+233 244047325',
+      href: 'tel:+233244047325'
     },
     {
       icon: <FaEnvelope className="text-2xl text-green-600" />,
       title: 'Email',
-      details: 'Foodandgoodgov.1@gmail.com'
+      details: 'Foodandgoodgov.1@gmail.com',
+      href: 'mailto:Foodandgoodgov.1@gmail.com'
     },
     {
       icon: <FaMapMarkerAlt className="text-2xl text-green-600" />,
       title: 'Location',
-      details: 'Accra, Ghana'
+      details: 'Accra, Ghana',
+      href: 'https://maps.google.com/?q=Accra,Ghana'
     }
   ];
 
@@ -119,7 +122,14 @@ const Contact = () => {
                     <div className="bg-green-100 p-3 rounded-full">{item.icon}</div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
-                      <p className="text-gray-600">{item.details}</p>
+                      <a 
+                        href={item.href}
+                        className="text-gray-600 hover:text-green-600 transition-colors"
+                        target={item.title === 'Location' ? '_blank' : '_self'}
+                        rel={item.title === 'Location' ? 'noopener noreferrer' : ''}
+                      >
+                        {item.details}
+                      </a>
                     </div>
                   </div>
                 ))}
