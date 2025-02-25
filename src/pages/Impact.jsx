@@ -1,13 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaChartLine, FaGraduationCap, FaHandHoldingHeart, FaSchool, FaSeedling, FaUsers } from 'react-icons/fa';
-//import { FaGraduationCap, FaHandHoldingHeart, FaSchool, FaUsers, FaSeedling, FaChartLine } from 'react-icons/fa';
 
 const Impact = () => {
   const stats = [
-    { number: "1M+", text: "Students Fed", icon: <FaGraduationCap className="text-3xl" /> },
-    { number: "500+", text: "Schools Supported", icon: <FaSchool className="text-3xl" /> },
-    { number: "16", text: "Regions Covered", icon: <FaUsers className="text-3xl" /> }
+    { 
+      number: "1M+", 
+      text: "Students Fed", 
+      icon: <FaGraduationCap className="text-3xl text-green-600" />,
+      color: "text-green-700"
+    },
+    { 
+      number: "500+", 
+      text: "Schools Supported", 
+      icon: <FaSchool className="text-3xl text-green-600" />,
+      color: "text-red-600"
+    },
+    { 
+      number: "16", 
+      text: "Regions Covered", 
+      icon: <FaUsers className="text-3xl text-green-600" />,
+      color: "text-green-700"
+    }
   ];
 
   const achievements = [
@@ -74,7 +88,7 @@ const Impact = () => {
                 className="bg-green-50 p-8 rounded-2xl text-center hover:shadow-lg transition-shadow"
               >
                 {stat.icon}
-                <div className="text-5xl font-bold text-green-700 mt-4">{stat.number}</div>
+                <div className={`text-5xl font-bold ${stat.color} mt-4`}>{stat.number}</div>
                 <p className="mt-2 text-gray-700 text-lg">{stat.text}</p>
               </motion.div>
             ))}

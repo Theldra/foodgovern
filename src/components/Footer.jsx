@@ -13,7 +13,7 @@ const Footer = () => {
             <img
               src={allfoodlogo}
               alt="Alliance for Food Security Logo"
-              className="h-16 w-auto bg-white rounded-lg p-2"
+              className="h-24 w-auto bg-white/5 rounded-md p-1" // Changed height and reduced background opacity
             />
             <p className="text-white">
               Supporting food security and good governance in Ghana through sustainable school feeding programs.

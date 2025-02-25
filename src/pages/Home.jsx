@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLeaf, FaUsers, FaUtensils } from 'react-icons/fa';
+import { FaChevronDown, FaLeaf, FaUsers, FaUtensils } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const programs = [
@@ -19,6 +20,25 @@ const Home = () => {
       description: 'Promoting transparency and efficiency in program management',
       icon: <FaUsers className="w-8 h-8 text-red-600" />,
     },
+  ];
+
+  const faqs = [
+    {
+      question: "How does the school feeding program work?",
+      answer: "Our school feeding program partners with local farmers and communities to provide nutritious daily meals to students across Ghana, improving both education outcomes and local food security."
+    },
+    {
+      question: "How can schools participate in the program?",
+      answer: "Schools can apply through their district education offices. We evaluate applications based on need and available resources to ensure sustainable program implementation."
+    },
+    {
+      question: "What measures ensure program transparency?",
+      answer: "We implement digital tracking systems, regular audits, and community oversight to maintain transparency and accountability in all our operations."
+    },
+    {
+      question: "How can I contribute to the program?",
+      answer: "You can contribute through volunteering, partnerships, or donations. Contact us to learn more about specific opportunities to support our mission."
+    }
   ];
 
   return (
@@ -134,6 +154,63 @@ const Home = () => {
                 </motion.div>
               ))}
             </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* FAQs Section */}
+      <div className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900">FAQs</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-green-700 to-red-600 mx-auto mt-4" />
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-green-700"
+              >
+                <motion.div
+                  initial={false}
+                  animate={{ backgroundColor: "#fff" }}
+                  className="space-y-3"
+                >
+                  <div className="flex items-start gap-3">
+                    <FaChevronDown className="text-green-700 mt-1.5 flex-shrink-0 transform transition-transform" />
+                    <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed pl-8">
+                    {faq.answer}
+                  </p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <p className="text-gray-600 mb-6">Still have questions? We're here to help!</p>
+            <Link 
+              to="/contact"
+              className="inline-block bg-green-700 text-white px-8 py-3 rounded-full hover:bg-red-600 transition-colors"
+            >
+              Contact Us
+            </Link>
           </motion.div>
         </div>
       </div>
