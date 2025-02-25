@@ -179,21 +179,25 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-green-700"
+                className="bg-gray-50 rounded-lg hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-green-700"
               >
-                <motion.div
-                  initial={false}
-                  animate={{ backgroundColor: "#fff" }}
-                  className="space-y-3"
-                >
-                  <div className="flex items-start gap-3">
-                    <FaChevronDown className="text-green-700 mt-1.5 flex-shrink-0 transform transition-transform" />
-                    <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed pl-8">
-                    {faq.answer}
-                  </p>
-                </motion.div>
+                <details className="group">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                    <div className="flex items-start gap-3">
+                      <FaChevronDown className="text-green-700 mt-1.5 flex-shrink-0 transform transition-transform group-open:rotate-180" />
+                      <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                    </div>
+                  </summary>
+                  <motion.div
+                    initial={false}
+                    animate={{ backgroundColor: "#fff" }}
+                    className="px-6 pb-6"
+                  >
+                    <p className="text-gray-600 leading-relaxed pl-8">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                </details>
               </motion.div>
             ))}
           </div>

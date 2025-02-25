@@ -37,15 +37,32 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
                 <FaEnvelope size={16} />
-                <span>Foodandgoodgov.1@gmail.com</span>
+                <a 
+                  href="mailto:Foodandgoodgov.1@gmail.com"
+                  className="hover:text-red-300 transition-colors"
+                >
+                  Foodandgoodgov.1@gmail.com
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <FaPhoneAlt size={16} />
-                <span>+233 244047325</span>
+                <a 
+                  href="tel:+233244047325"
+                  className="hover:text-red-300 transition-colors"
+                >
+                  +233 244047325
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <FaMapMarkerAlt size={16} />
-                <span>Accra, Ghana</span>
+                <a 
+                  href="https://maps.google.com/?q=Accra,Ghana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-red-300 transition-colors"
+                >
+                  Accra, Ghana
+                </a>
               </li>
             </ul>
           </div>
