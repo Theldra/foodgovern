@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaChartLine, FaGraduationCap, FaHandHoldingHeart, FaSchool, FaSeedling, FaUsers } from 'react-icons/fa';
+import impImage from '../assets/images/fdjoy.jpg';
 
 const Impact = () => {
   const stats = [
@@ -51,7 +52,7 @@ const Impact = () => {
         className="relative h-[40vh] bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-          url('https://images.unsplash.com/photo-1524069290683-0457abfe42c3?q=80&w=2070&auto=format&fit=crop')`
+          url(${impImage})`
         }}
       >
         <div className="absolute inset-0 flex items-center justify-center">

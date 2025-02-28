@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaBullseye, FaChartLine, FaHandshake, FaLightbulb, FaStar, FaUsers } from 'react-icons/fa';
+import aboutBack from '../assets/images/school.jpg';
 
 const About = () => {
   const values = [
@@ -56,7 +57,7 @@ const About = () => {
         className="relative h-[50vh] bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-          url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop')`
+          url(${aboutBack})`
         }}
       >
         <div className="absolute inset-0 flex items-center justify-center">

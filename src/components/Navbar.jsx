@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom'; 
 import allfoodlogo from "../assets/images/alliancelogo.png";
-
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation(); 
 
   const navItems = [
     { name: 'Home', to: '/' },
@@ -14,6 +14,14 @@ const Navbar = () => {
     { name: 'Impact', to: '/impact' },
     { name: 'Contact', to: '/contact' },
   ];
+
+  // Helper function to check if link is active
+  const isActiveLink = (path) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname === path;
+  };
 
   return (
     <nav className="bg-white shadow fixed w-full z-50">
@@ -35,7 +43,11 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.to}
-                className="text-black hover:text-green-700 transition-colors"
+                className={`transition-colors ${
+                  isActiveLink(item.to)
+                    ? 'text-green-700 font-semibold'
+                    : 'text-black hover:text-green-700'
+                }`}
               >
                 {item.name}
               </Link>
@@ -65,7 +77,12 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.to}
-                className="block px-3 py-2 text-black hover:bg-green-50 hover:text-green-700 rounded-md"
+                className={`block px-3 py-2 rounded-md ${
+                  isActiveLink(item.to)
+                    ? 'bg-green-50 text-green-700 font-semibold'
+                    : 'text-black hover:bg-green-50 hover:text-green-700'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>

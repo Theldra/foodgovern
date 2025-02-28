@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram, FaPhoneAlt } from 'react-icons/fa';
-import toast from 'react-hot-toast'; // Add this import
+import toast from 'react-hot-toast'; 
+import contactImage from '../assets/images/cont.jpg';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -80,7 +81,7 @@ const Contact = () => {
         className="relative h-[40vh] bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-          url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop')`
+          url(${contactImage})`
         }}
       >
         <div className="absolute inset-0 flex items-center justify-center">

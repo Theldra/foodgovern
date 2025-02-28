@@ -78,12 +78,18 @@ const Home = () => {
                 transition={{ delay: 0.4 }}
                 className="mt-10 flex justify-center gap-4"
               >
-                <button className="bg-green-700 text-white px-8 py-3 rounded-full hover:bg-red-600 transition-colors">
+                <Link 
+                  to="/programs"
+                  className="bg-green-700 text-white px-8 py-3 rounded-full hover:bg-red-600 transition-colors"
+                >
                   Get Involved
-                </button>
-                <button className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-green-700 transition-colors">
+                </Link>
+                <Link 
+                  to="/about"
+                  className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-green-700 transition-colors"
+                >
                   Learn More
-                </button>
+                </Link>
               </motion.div>
             </div>
           </div>
