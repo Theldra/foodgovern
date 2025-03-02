@@ -9,11 +9,11 @@ const ScrollToTop = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth' // Add smooth scrolling effect
+      behavior: 'smooth' 
     });
   }, [pathname]);
 
-  return null; // This component doesn't need to render anything
+  return null; 
 };
 
 export default ScrollToTop;

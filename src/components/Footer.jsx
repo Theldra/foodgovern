@@ -9,19 +9,21 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Organization Info */}
-          <div className="space-y-4">
-            <img
-              src={allfoodlogo}
-              alt="Alliance for Food Security Logo"
-              className="h-24 w-auto bg-white/5 rounded-md p-1" // Changed height and reduced background opacity
-            />
+          <div className="space-y-4 text-center md:text-left">
+            <div className="flex justify-center md:justify-start">
+              <img
+                src={allfoodlogo}
+                alt="Alliance for Food Security Logo"
+                className="h-24 w-auto bg-white/5 rounded-md p-1"
+              />
+            </div>
             <p className="text-white">
               Supporting food security and good governance in Ghana through sustainable school feeding programs.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-white hover:text-red-300">About Us</Link></li>
@@ -32,10 +34,10 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2">
-              <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2 justify-center md:justify-start">
                 <FaEnvelope size={16} />
                 <a 
                   href="mailto:Foodandgoodgov.1@gmail.com"
@@ -44,7 +46,7 @@ const Footer = () => {
                   Foodandgoodgov.1@gmail.com
                 </a>
               </li>
-              <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2 justify-center md:justify-start">
                 <FaPhoneAlt size={16} />
                 <a 
                   href="tel:+233244047325"
@@ -53,7 +55,7 @@ const Footer = () => {
                   +233 244047325
                 </a>
               </li>
-              <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2 justify-center md:justify-start">
                 <FaMapMarkerAlt size={16} />
                 <a 
                   href="https://maps.google.com/?q=Accra,Ghana"
@@ -68,9 +70,9 @@ const Footer = () => {
           </div>
 
           {/* Social Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 justify-center md:justify-start">
               <a href="#" className="hover:text-red-300">
                 <FaFacebook size={24} />
               </a>

@@ -1,132 +1,181 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaChevronDown, FaLeaf, FaUsers, FaUtensils } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { FaChartLine, FaChevronDown, FaGraduationCap, FaMapMarkerAlt, FaSchool, FaUsers, FaUtensils } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import foodGovernance from '../assets/images/fsc.jpeg';
+import feedingProgram from '../assets/images/feddem.jpg';
 
 const Home = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      image: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1771&auto=format&fit=crop',
+      title: 'Food Security',
+      subtitle: 'Creating resilient food systems across Ghana.'
+      //description: 
+    },
+    {
+      image: foodGovernance,
+      title: 'Good Governance',
+      subtitle: 'Setting the standard for program accountability.'
+      //description: 
+    },
+    {
+      image: feedingProgram,
+      title: 'Nourishing Ghana\'s Future',
+      subtitle: 'One School at a Time',
+     // description: 'Empowering communities through sustainable school feeding programs.'
+    }
+   
+  ];
+
   const programs = [
     {
-      title: 'School Feeding',
-      description: 'Providing nutritious meals to students across Ghana',
-      icon: <FaUtensils className="w-8 h-8 text-red-600" />,
+      icon: <FaUtensils className="text-4xl text-green-600" />,
+      title: "School Feeding",
+      description: "Providing nutritious meals to students across Ghana."
     },
     {
-      title: 'Food Security',
-      description: 'Ensuring sustainable food systems and agricultural practices',
-      icon: <FaLeaf className="w-8 h-8 text-green-700" />,
+      icon: <FaUsers className="text-4xl text-green-600" />,
+      title: "Community Support",
+      description: "Empowering local farmers and food suppliers."
     },
     {
-      title: 'Good Governance',
-      description: 'Promoting transparency and efficiency in program management',
-      icon: <FaUsers className="w-8 h-8 text-red-600" />,
-    },
+      icon: <FaChartLine className="text-4xl text-green-600" />,
+      title: "Good Governance",
+      description: "Ensuring transparency in program management."
+    }
   ];
 
   const faqs = [
     {
-      question: "How does the school feeding program work?",
-      answer: "Our school feeding program partners with local farmers and communities to provide nutritious daily meals to students across Ghana, improving both education outcomes and local food security."
+      question: "What is the School Feeding Program?",
+      answer: "Our School Feeding Program provides nutritious daily meals to students across Ghana, supporting education and food security simultaneously."
     },
     {
-      question: "How can schools participate in the program?",
-      answer: "Schools can apply through their district education offices. We evaluate applications based on need and available resources to ensure sustainable program implementation."
+      question: "How do you ensure program transparency?",
+      answer: "We maintain strict monitoring and evaluation systems, regular audits, and public reporting to ensure full transparency in all our operations."
     },
     {
-      question: "What measures ensure program transparency?",
-      answer: "We implement digital tracking systems, regular audits, and community oversight to maintain transparency and accountability in all our operations."
+      question: "How can communities get involved?",
+      answer: "Communities can participate through our local farmer integration program, volunteer opportunities, and various partnership initiatives."
     },
     {
-      question: "How can I contribute to the program?",
-      answer: "You can contribute through volunteering, partnerships, or donations. Contact us to learn more about specific opportunities to support our mission."
+      question: "What regions do you currently serve?",
+      answer: "We currently operate in 16 regions across Ghana, reaching both urban and rural communities."
     }
   ];
 
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-in-out'
+    });
+
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(slideInterval);
+  }, []);
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section with background image */}
-      <div className="relative pt-20 pb-32 flex content-center items-center justify-center min-h-screen">
-        <div 
-          className="absolute top-0 w-full h-full bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-            url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1771&auto=format&fit=crop')`,
-          }}
-        />
-        <div className="container relative mx-auto">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-5xl font-bold text-white mb-6"
-              >
-                Ensuring Food Security
-                <span className="block text-green-300">for Ghana's Future</span>
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mt-4 text-xl text-white max-w-3xl mx-auto"
-              >
-                Supporting school feeding programs and promoting good governance
-                for a healthier, more prosperous Ghana.
-              </motion.p>
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mt-10 flex justify-center gap-4"
-              >
-                <Link 
-                  to="/programs"
-                  className="bg-green-700 text-white px-8 py-3 rounded-full hover:bg-red-600 transition-colors"
-                >
-                  Get Involved
-                </Link>
-                <Link 
-                  to="/about"
-                  className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-green-700 transition-colors"
-                >
-                  Learn More
-                </Link>
-              </motion.div>
+      <div className="relative min-h-screen overflow-hidden">
+        {/* Hero Section with custom slider */}
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              currentSlide === index ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url(${slide.image})`
+              }}
+            />
+            <div className="relative pt-20 flex items-center justify-center min-h-screen">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center" data-aos="fade-up">
+                  <h1 className="text-5xl font-bold text-white mb-6">
+                    {slide.title}
+                    <span className="block text-green-300">{slide.subtitle}</span>
+                  </h1>
+                  <p className="mt-4 text-xl text-white max-w-3xl mx-auto">
+                    {slide.description}
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+        ))}
+
+        {/* Slider Navigation Dots */}
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-10">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                currentSlide === index 
+                  ? 'bg-green-700 w-6' 
+                  : 'bg-white/50 hover:bg-white'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="absolute bottom-20 left-0 right-0 z-10">
+          <div className="flex justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
+            <Link 
+              to="/programs"
+              className="bg-green-700 text-white px-8 py-3 rounded-full hover:bg-red-600 transition-all duration-500 transform hover:scale-105 hover:shadow-lg"
+            >
+              Get Started
+            </Link>
+            <Link 
+              to="/about"
+              className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-green-700 transition-colors"
+            >
+              Learn More
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Programs Section */}
-      <div className="py-20 bg-white">
+      <div className="bg-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900">Our Programs</h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto mt-4" />
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {programs.map((program, index) => (
-              <motion.div
-                key={program.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-green-700"
-              >
-                <div className="flex justify-center mb-4">{program.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 text-center mb-4">
-                  {program.title}
-                </h3>
-                <p className="text-gray-600 text-center">
-                  {program.description}
-                </p>
-              </motion.div>
-            ))}
+          <div className="text-center" data-aos="fade-up">
+            <h2 className="text-4xl font-bold text-gray-900 mb-16">Our Programs</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {programs.map((program, index) => (
+                <div
+                  key={program.title}
+                  className="group bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-200 hover:border-green-700 transform hover:-translate-y-1"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 200}
+                >
+                  <div className="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                    {program.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 text-center mb-4">
+                    {program.title}
+                  </h3>
+                  <p className="text-gray-600 text-center">
+                    {program.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -134,58 +183,45 @@ const Home = () => {
       {/* Impact Section */}
       <div className="bg-green-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
+          <div className="text-center" data-aos="fade-up">
             <h2 className="text-4xl font-bold text-gray-900 mb-16">Our Impact</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { number: "1M+", text: "Students Fed", color: "text-green-700" },
-                { number: "500+", text: "Schools Supported", color: "text-red-600" },
-                { number: "16", text: "Regions Covered", color: "text-green-700" }
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.text}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="text-center"
+                ["1M+", "Students Fed", <FaGraduationCap className="text-4xl text-green-600 mb-4" />],
+                ["500+", "Schools", <FaSchool className="text-4xl text-green-600 mb-4" />],
+                ["16", "Regions", <FaMapMarkerAlt className="text-4xl text-green-600 mb-4" />]
+              ].map(([number, text, icon], index) => (
+                <div
+                  key={text}
+                  className="text-center transform hover:-translate-y-1 transition-transform duration-500"
+                  data-aos="zoom-in"
+                  data-aos-delay={index * 200}
                 >
-                  <div className={`text-5xl font-bold ${stat.color}`}>{stat.number}</div>
-                  <p className="mt-2 text-gray-600 text-lg">{stat.text}</p>
-                </motion.div>
+                  {icon}
+                  <div className="text-5xl font-bold text-green-700">{number}</div>
+                  <p className="mt-2 text-gray-600 text-lg">{text}</p>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* FAQs Section */}
       <div className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl font-bold text-gray-900">FAQs</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-green-700 to-red-600 mx-auto mt-4" />
-          </motion.div>
+          </div>
           
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {faqs.map((faq, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="bg-gray-50 rounded-lg hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-green-700"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
               >
                 <details className="group">
                   <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
@@ -194,26 +230,17 @@ const Home = () => {
                       <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
                     </div>
                   </summary>
-                  <motion.div
-                    initial={false}
-                    animate={{ backgroundColor: "#fff" }}
-                    className="px-6 pb-6"
-                  >
+                  <div className="px-6 pb-6 bg-white">
                     <p className="text-gray-600 leading-relaxed pl-8">
                       {faq.answer}
                     </p>
-                  </motion.div>
+                  </div>
                 </details>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
+          <div className="text-center mt-12" data-aos="fade-up">
             <p className="text-gray-600 mb-6">Still have questions? We're here to help!</p>
             <Link 
               to="/contact"
@@ -221,7 +248,7 @@ const Home = () => {
             >
               Contact Us
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
